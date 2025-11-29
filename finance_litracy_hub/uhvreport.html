@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visit to Orphanage Presentation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #2193b0 0%, #6dd5ed 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .presentation-container {
+            width: 100%;
+            max-width: 960px;
+            aspect-ratio: 16/9;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .slide {
+            width: 100%;
+            height: 100%;
+            display: none;
+            padding: 60px;
+            background: white;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .slide.active {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .slide-title {
+            background: linear-gradient(135deg, #2193b0 0%, #6dd5ed 100%);
+            color: white;
+            padding: 80px 60px;
+            text-align: center;
+            justify-content: center;
+        }
+
+        .slide-title h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .slide-title h2 {
+            font-size: 28px;
+            font-weight: 300;
+            margin-bottom: 40px;
+            opacity: 0.95;
+        }
+
+        .slide-title .authors {
+            font-size: 16px;
+            line-height: 1.8;
+            opacity: 0.9;
+        }
+
+        .slide-title .university {
+            margin-top: 30px;
+            font-size: 18px;
+            font-weight: 500;
+        }
+
+        h2 {
+            color: #2193b0;
+            font-size: 36px;
+            margin-bottom: 30px;
+            border-bottom: 3px solid #2193b0;
+            padding-bottom: 10px;
+        }
+
+        h3 {
+            color: #1a7a8e;
+            font-size: 24px;
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+
+        p, li {
+            color: #333;
+            font-size: 18px;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        ul {
+            margin-left: 30px;
+        }
+
+        li {
+            margin-bottom: 12px;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #2193b015 0%, #6dd5ed15 100%);
+            border-left: 4px solid #2193b0;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-top: 20px;
+        }
+
+        .controls {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+            z-index: 10;
+        }
+
+        button {
+            background: linear-gradient(135deg, #2193b0 0%, #6dd5ed 100%);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(33, 147, 176, 0.4);
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(33, 147, 176, 0.6);
+        }
+
+        button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .slide-number {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            color: #764ba2;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .icon {
+            display: inline-block;
+            margin-right: 10px;
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="presentation-container">
+        <!-- Slide 1: Title -->
+        <div class="slide slide-title active">
+            <h1>Visit to Orphanage</h1>
+            <h2>Universal Human Values Field Assignment</h2>
+            <div class="authors">
+                Prajwal Khatavakar (RVUN25SCS083)<br>
+                Prajwal R (RVUN25SCS061)<br>
+                Sanjay M (RVUN25SCS122)<br>
+                Nithin S (RVUN25SCS079)<br>
+                Nithin L (RVUN25SCS020)
+            </div>
+            <div class="university">
+                School of Computer Science and Engineering<br>
+                RV University, Bangalore<br>
+                2025-2026
+            </div>
+        </div>
+
+        <!-- Slide 2: Introduction -->
+        <div class="slide">
+            <h2>Introduction</h2>
+            <p>Our team visited <strong>Ananda Marga Children's Home</strong> in Bangalore as part of the Universal Human Values course field assignment.</p>
+            
+            <div class="highlight-box">
+                <h3>📅 Visit Details</h3>
+                <p><strong>Date:</strong> November 2, 2025</p>
+                <p><strong>Duration:</strong> 9:30 AM - 5:30 PM (Full Day)</p>
+                <p><strong>Location:</strong> Ananda Marga Children's Home, Bangalore</p>
+            </div>
+
+            <h3>🎯 Objectives</h3>
+            <ul>
+                <li>Experience values like compassion, cooperation, and generosity</li>
+                <li>Build meaningful connections with children</li>
+                <li>Go beyond material donations to share kindness and joy</li>
+            </ul>
+        </div>
+
+        <!-- Slide 3: About the Assignment -->
+        <div class="slide">
+            <h2>About the Field Assignment</h2>
+            
+            <h3>🏠 About Ananda Marga Children's Home</h3>
+            <p>A home caring for orphaned children and those from underprivileged families, providing care, education, and emotional support in a warm environment.</p>
+
+            <h3>📦 Preparations</h3>
+            <ul>
+                <li>Started planning one week in advance</li>
+                <li>Divided responsibilities among team members</li>
+                <li>Gathered donations: rice, pens, notebooks, snacks, and cash</li>
+                <li>Planned engaging activities for the children</li>
+            </ul>
+
+            <div class="highlight-box">
+                <p><strong>Our Approach:</strong> We believed that time, empathy, and presence would be as valuable as material donations.</p>
+            </div>
+        </div>
+
+        <!-- Slide 4: Activities -->
+        <div class="slide">
+            <h2>Activities & Engagement</h2>
+            
+            <div class="two-column">
+                <div>
+                    <h3>🎮 Morning Activities</h3>
+                    <ul>
+                        <li>Warm welcome by caretaker</li>
+                        <li>Ice-breaking games</li>
+                        <li>Musical chairs</li>
+                        <li>Drawing sessions</li>
+                        <li>Story sharing</li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3>🍽️ Afternoon Activities</h3>
+                    <ul>
+                        <li>Shared lunch together</li>
+                        <li>Distribution of supplies</li>
+                        <li>Outdoor games</li>
+                        <li>Dream discussions</li>
+                        <li>Personal interactions</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="highlight-box">
+                <p><strong>Most Touching Moment:</strong> Watching children share snacks with each other before taking any for themselves - demonstrating true generosity.</p>
+            </div>
+        </div>
+
+        <!-- Slide 5: Team Reflections -->
+        <div class="slide">
+            <h2>Team Reflections</h2>
+            
+            <h3>💡 Key Learnings</h3>
+            <ul>
+                <li><strong>True Teamwork:</strong> Beyond dividing tasks - supporting each other emotionally and practically</li>
+                <li><strong>Value of Time:</strong> Realized the importance of giving time and attention, not just material things</li>
+                <li><strong>Privilege & Responsibility:</strong> Became aware of our privileges as students and citizens</li>
+                <li><strong>Leadership Redefined:</strong> Leadership is about empathy, flexibility, and collaboration</li>
+            </ul>
+
+            <div class="highlight-box">
+                <h3>🌟 Core Realization</h3>
+                <p>"Service is not a one-time act - it's a mindset. Even the simplest gestures can have a profound effect."</p>
+            </div>
+        </div>
+
+        <!-- Slide 6: Individual Reflection -->
+        <div class="slide">
+            <h2>Individual Reflection</h2>
+            <h3>Prajwal Khatavakar's Experience</h3>
+            
+            <div class="highlight-box">
+                <p><strong>Most Memorable Moment:</strong> A boy called me "anna" and asked me to play - showing that kindness doesn't always need words.</p>
+            </div>
+
+            <h3>🎓 Personal Insights</h3>
+            <ul>
+                <li>Found joy in simple things and genuine connections</li>
+                <li>Witnessed true generosity in how children shared with each other</li>
+                <li>Learned that time and attention matter more than material possessions</li>
+                <li>Developed greater patience and compassion</li>
+                <li>Gained gratitude toward family and loved ones</li>
+                <li>Understood the importance of doing things because they're right, not expected</li>
+            </ul>
+        </div>
+
+        <!-- Slide 7: Key Takeaways -->
+        <div class="slide">
+            <h2>Key Takeaways</h2>
+            
+            <div class="two-column">
+                <div>
+                    <h3>🤝 Values Experienced</h3>
+                    <ul>
+                        <li>Compassion</li>
+                        <li>Cooperation</li>
+                        <li>Generosity</li>
+                        <li>Empathy</li>
+                        <li>Selfless service</li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3>💭 Life Lessons</h3>
+                    <ul>
+                        <li>Appreciate simple joys</li>
+                        <li>Act with more empathy</li>
+                        <li>Awareness of others' needs</li>
+                        <li>Power of presence</li>
+                        <li>Community building</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="highlight-box">
+                <h3>✨ Ultimate Learning</h3>
+                <p>"The children's happiness came not just from the things we brought, but from the time we spent and the attention we gave them."</p>
+            </div>
+        </div>
+
+        <!-- Slide 8: Conclusion -->
+        <div class="slide">
+            <h2>Conclusion</h2>
+            
+            <p>The visit to Ananda Marga Children's Home was a deeply meaningful and transformative experience that went beyond a simple field assignment.</p>
+
+            <div class="highlight-box">
+                <h3>🌈 Impact on Us</h3>
+                <p>We carried home not just memories but life lessons about compassion, connection, and the power of kindness.</p>
+            </div>
+
+            <h3>🎯 Mission Accomplished</h3>
+            <ul>
+                <li>Understood that kindness is a universal value connecting all humans</li>
+                <li>Experienced how sharing time and care impacts both giver and receiver</li>
+                <li>Learned to reflect, connect, and grow as responsible individuals</li>
+                <li>Reinforced belief that positive change starts with compassion</li>
+            </ul>
+
+            <div class="highlight-box">
+                <p><strong>"Every act of kindness, no matter how small, contributes to a more humane world."</strong></p>
+            </div>
+        </div>
+
+        <!-- Slide 9: Thank You -->
+        <div class="slide slide-title">
+            <h1>Thank You</h1>
+            <h2>Questions & Discussion</h2>
+            <div style="margin-top: 40px; font-size: 20px;">
+                <p>🙏 Special thanks to Ananda Marga Children's Home</p>
+                <p>and all the wonderful children who made this experience unforgettable</p>
+            </div>
+        </div>
+
+        <div class="slide-number" id="slideNumber">1 / 9</div>
+        
+        <div class="controls">
+            <button id="prevBtn" onclick="changeSlide(-1)">← Previous</button>
+            <button id="nextBtn" onclick="changeSlide(1)">Next →</button>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+
+        function showSlide(n) {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (n + totalSlides) % totalSlides;
+            slides[currentSlide].classList.add('active');
+            
+            document.getElementById('slideNumber').textContent = `${currentSlide + 1} / ${totalSlides}`;
+            
+            document.getElementById('prevBtn').disabled = currentSlide === 0;
+            document.getElementById('nextBtn').disabled = currentSlide === totalSlides - 1;
+        }
+
+        function changeSlide(direction) {
+            showSlide(currentSlide + direction);
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') changeSlide(-1);
+            if (e.key === 'ArrowRight') changeSlide(1);
+        });
+
+        showSlide(0);
+    </script>
+</body>
+</html>

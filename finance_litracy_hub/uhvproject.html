@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Traffic Light Controller Presentation</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow: hidden;
+            background: #000;
+        }
+
+        .presentation-container {
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+        }
+
+        .slide {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: none;
+            padding: 60px 80px;
+            color: #fff;
+            animation: slideIn 0.5s ease-out;
+        }
+
+        .slide.active {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(100px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Slide 1 - Title Slide */
+        #slide1 {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 50%, #7e22ce 100%);
+            text-align: center;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #slide1::before {
+            content: '';
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            top: 10%;
+            right: 15%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-30px);
+            }
+        }
+
+        .title-content {
+            z-index: 1;
+        }
+
+        .main-title {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        .subtitle {
+            font-size: 1.8rem;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+
+        .university-info {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+        }
+
+        .course-info {
+            font-size: 1.1rem;
+            margin-top: 30px;
+            opacity: 0.8;
+        }
+
+        /* Slide 2 - Objective */
+        #slide2 {
+            background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
+        }
+
+        #slide2::after {
+            content: '🎯';
+            position: absolute;
+            font-size: 300px;
+            opacity: 0.05;
+            right: 10%;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        /* Slide 3 - Theoretical Background */
+        #slide3 {
+            background: linear-gradient(135deg, #134e5e 0%, #71b280 100%);
+        }
+
+        #slide3::after {
+            content: '⚙️';
+            position: absolute;
+            font-size: 250px;
+            opacity: 0.08;
+            right: 5%;
+            bottom: 10%;
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Slide 4 - Circuit Design */
+        #slide4 {
+            background: linear-gradient(135deg, #283c86 0%, #45a247 100%);
+        }
+
+        .circuit-pattern {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0.1;
+            background-image:
+                repeating-linear-gradient(0deg, transparent, transparent 50px, rgba(255, 255, 255, 0.1) 50px, rgba(255, 255, 255, 0.1) 51px),
+                repeating-linear-gradient(90deg, transparent, transparent 50px, rgba(255, 255, 255, 0.1) 50px, rgba(255, 255, 255, 0.1) 51px);
+        }
+
+        /* Slide 5 - Truth Table */
+        #slide5 {
+            background: linear-gradient(135deg, #1f4037 0%, #99f2c8 100%);
+        }
+
+        .table-container {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 30px;
+            border-radius: 15px;
+            margin: 30px 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        th,
+        td {
+            padding: 15px;
+            text-align: center;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        th {
+            background: rgba(255, 255, 255, 0.2);
+            font-size: 1.3rem;
+        }
+
+        td {
+            font-size: 1.2rem;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        /* Slide 6 - Simulation Steps */
+        #slide6 {
+            background: linear-gradient(135deg, #8e2de2 0%, #4a00e0 100%);
+        }
+
+        #slide6::before {
+            content: '🖥️';
+            position: absolute;
+            font-size: 200px;
+            opacity: 0.08;
+            left: 5%;
+            bottom: 10%;
+        }
+
+        /* Slide 7 - Traffic Light Animation */
+        #slide7 {
+            background: linear-gradient(135deg, #000000 0%, #434343 100%);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .traffic-light {
+            background: #2a2a2a;
+            border-radius: 30px;
+            padding: 30px;
+            box-shadow: 0 10px 50px rgba(0, 0, 0, 0.5);
+        }
+
+        .light {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin: 20px;
+            border: 5px solid #1a1a1a;
+            transition: all 0.5s;
+        }
+
+        .light.green {
+            background: #2ecc71;
+            box-shadow: 0 0 30px #2ecc71;
+        }
+
+        .light.yellow {
+            background: #f1c40f;
+            box-shadow: 0 0 30px #f1c40f;
+        }
+
+        .light.red {
+            background: #e74c3c;
+            box-shadow: 0 0 30px #e74c3c;
+        }
+
+        .light.off {
+            background: #333;
+            box-shadow: none;
+        }
+
+        /* Slide 8 - Observations */
+        #slide8 {
+            background: linear-gradient(135deg, #ff6b6b 0%, #4ecdc4 100%);
+        }
+
+        /* Slide 9 - Conclusion */
+        #slide9 {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        #slide9::after {
+            content: '✓';
+            position: absolute;
+            font-size: 350px;
+            opacity: 0.05;
+            right: 15%;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        /* Slide 10 - Team & References */
+        #slide10 {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+
+        /* Slide 11 - Thank You */
+        #slide11 {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            text-align: center;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #slide11::before {
+            content: '🎉';
+            position: absolute;
+            font-size: 300px;
+            opacity: 0.1;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        /* Common Styles */
+        .slide-title {
+            font-size: 3rem;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            border-bottom: 4px solid rgba(255, 255, 255, 0.3);
+            padding-bottom: 15px;
+        }
+
+        .content-box {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 30px;
+            border-radius: 15px;
+            margin: 20px 0;
+            border-left: 5px solid rgba(255, 255, 255, 0.5);
+        }
+
+        .content-box h3 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+        }
+
+        .content-box p,
+        .content-box li {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            margin-bottom: 10px;
+        }
+
+        ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        ul li {
+            padding-left: 35px;
+            position: relative;
+            margin-bottom: 15px;
+        }
+
+        ul li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1.5rem;
+        }
+
+        .formula {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 15px;
+            border-radius: 10px;
+            font-family: 'Courier New', monospace;
+            font-size: 1.3rem;
+            margin: 10px 0;
+        }
+
+        .team-members {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .member-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .member-card h4 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+
+        .member-card p {
+            font-size: 1rem;
+            opacity: 0.8;
+        }
+
+        /* Navigation */
+        .navigation {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            display: flex;
+            gap: 15px;
+            z-index: 1000;
+        }
+
+        .nav-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: none;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            color: #fff;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .nav-btn:hover {
+            background: rgba(255, 255, 255, 0.4);
+            transform: scale(1.1);
+        }
+
+        .slide-counter {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            z-index: 1000;
+        }
+
+        @media (max-width: 768px) {
+            .slide {
+                padding: 30px 20px;
+            }
+
+            .main-title {
+                font-size: 2.5rem;
+            }
+
+            .subtitle {
+                font-size: 1.2rem;
+            }
+
+            .slide-title {
+                font-size: 2rem;
+            }
+
+            .content-box p,
+            .content-box li {
+                font-size: 1rem;
+            }
+
+            .team-members {
+                grid-template-columns: 1fr;
+            }
+
+            .navigation {
+                bottom: 15px;
+                right: 15px;
+            }
+
+            .nav-btn {
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="presentation-container">
+        <!-- Slide 1: Title -->
+        <div class="slide active" id="slide1">
+            <div class="title-content">
+                <h1 class="main-title">Simple Traffic Light Controller</h1>
+                <p class="subtitle">Digital Logic and Computer Orientation Project</p>
+                <p class="university-info">RV UNIVERSITY</p>
+                <p class="university-info">School of Computer Science and Engineering</p>
+                <p class="course-info">Course Code: CS1152 | I Semester B.Sc (Hons.)</p>
+                <p class="course-info">Project Report 2025-2026</p>
+            </div>
+        </div>
+
+        <!-- Slide 2: Objective -->
+        <div class="slide" id="slide2">
+            <h2 class="slide-title">🎯 Project Objective</h2>
+            <div class="content-box">
+                <p>The main objective of this project is to design and simulate a sequential circuit that controls
+                    traffic lights in a standard sequence:</p>
+                <h3 style="text-align: center; margin: 30px 0; font-size: 2.5rem;">Green → Yellow → Red</h3>
+                <p>This project aims to demonstrate the working of flip-flops, counters, and logic gates to manage state
+                    transitions in a real-world application such as a traffic control system.</p>
+            </div>
+        </div>
+
+        <!-- Slide 3: Theoretical Background -->
+        <div class="slide" id="slide3">
+            <h2 class="slide-title">⚙️ Theoretical Background</h2>
+            <div class="content-box">
+                <p>This project is based on sequential circuits where output depends on current inputs and previous
+                    states:</p>
+                <ul>
+                    <li><strong>Logic Gates:</strong> AND, OR, NOT gates create logical expressions</li>
+                    <li><strong>Flip-Flops:</strong> D Flip-Flops store and change states with each clock pulse</li>
+                    <li><strong>Counters:</strong> Generate timing for light changes</li>
+                    <li><strong>Boolean Expressions:</strong> Define logic relationships between inputs and outputs</li>
+                    <li><strong>Karnaugh Maps:</strong> Simplify Boolean expressions to minimize circuit complexity</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Slide 4: Circuit Design -->
+        <div class="slide" id="slide4">
+            <div class="circuit-pattern"></div>
+            <h2 class="slide-title">🔌 Circuit Design</h2>
+            <div class="content-box">
+                <p>The circuit consists of three D flip-flops representing three traffic light states:</p>
+                <ul>
+                    <li><strong>State 00:</strong> Green Light ON</li>
+                    <li><strong>State 01:</strong> Yellow Light ON</li>
+                    <li><strong>State 10:</strong> Red Light ON</li>
+                </ul>
+                <p style="margin-top: 20px;">Each state transition occurs on the rising edge of the clock pulse. The
+                    logic circuit uses AND/OR gates to determine the next state.</p>
+            </div>
+        </div>
+
+        <!-- Slide 5: Truth Table & Boolean Expressions -->
+        <div class="slide" id="slide5">
+            <h2 class="slide-title">📊 Truth Table & Boolean Expressions</h2>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>State</th>
+                            <th>Green</th>
+                            <th>Yellow</th>
+                            <th>Red</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>00</td>
+                            <td>1</td>
+                            <td>0</td>
+                            <td>0</td>
+                        </tr>
+                        <tr>
+                            <td>01</td>
+                            <td>0</td>
+                            <td>1</td>
+                            <td>0</td>
+                        </tr>
+                        <tr>
+                            <td>10</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>1</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="content-box">
+                <h3>Boolean Expressions:</h3>
+                <div class="formula">G = Q̄₁ Q̄₀</div>
+                <div class="formula">Y = Q̄₁ Q₀</div>
+                <div class="formula">R = Q₁ Q̄₀</div>
+            </div>
+        </div>
+
+        <!-- Slide 6: Simulation Steps -->
+        <div class="slide" id="slide6">
+            <h2 class="slide-title">🖥️ Simulation Steps</h2>
+            <div class="content-box">
+                <ul>
+                    <li>Open Logisim or Tinkercad Circuits</li>
+                    <li>Place three D flip-flops and connect with a common clock source</li>
+                    <li>Connect LEDs to represent Green, Yellow, and Red lights</li>
+                    <li>Use logic gates to define state transitions between lights</li>
+                    <li>Start the simulation and observe light changes in correct sequence</li>
+                    <li>Verify that each light stays ON for a fixed time interval before moving to the next</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Slide 7: Traffic Light Demo -->
+        <div class="slide" id="slide7">
+            <h2 class="slide-title" style="text-align: center;">🚦 Traffic Light Sequence Demo</h2>
+            <div class="traffic-light">
+                <div class="light red off" id="redLight"></div>
+                <div class="light yellow off" id="yellowLight"></div>
+                <div class="light green off" id="greenLight"></div>
+            </div>
+            <p style="text-align: center; margin-top: 30px; font-size: 1.5rem;">Watch the automatic sequence</p>
+        </div>
+
+        <!-- Slide 8: Observations & Results -->
+        <div class="slide" id="slide8">
+            <h2 class="slide-title">🔍 Observations & Results</h2>
+            <div class="content-box">
+                <p>The simulation results confirm that the designed circuit correctly follows the standard traffic light
+                    sequence.</p>
+                <h3 style="margin-top: 25px;">Key Findings:</h3>
+                <ul>
+                    <li>Each state change occurs after the designated clock pulse</li>
+                    <li>Proper use of flip-flops and logic gates validated</li>
+                    <li>Sequential logic operation effectively demonstrated</li>
+                </ul>
+                <h3 style="margin-top: 25px;">Limitations:</h3>
+                <ul>
+                    <li>Fixed timing intervals</li>
+                    <li>No external input for pedestrian control</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Slide 9: Conclusion -->
+        <div class="slide" id="slide9">
+            <h2 class="slide-title">✓ Conclusion</h2>
+            <div class="content-box">
+                <h3>Key Learnings:</h3>
+                <ul>
+                    <li>Understanding of sequential circuits using flip-flops and logic gates</li>
+                    <li>Practical application of traffic control systems</li>
+                    <li>Implementation of timing circuits</li>
+                    <li>Boolean simplification techniques</li>
+                    <li>Digital circuit design using simulation tools</li>
+                </ul>
+                <p style="margin-top: 30px; font-size: 1.3rem; text-align: center;">This project successfully
+                    demonstrates the principles of sequential logic in a real-world application.</p>
+            </div>
+        </div>
+
+        <!-- Slide 10: Team & References -->
+        <div class="slide" id="slide10">
+            <h2 class="slide-title">👥 Project Team</h2>
+            <div class="team-members">
+                <div class="member-card">
+                    <h4>Prajwal R</h4>
+                    <p>RVUN25SCS061</p>
+                    <p>Section B</p>
+                </div>
+                <div class="member-card">
+                    <h4>Prajwal Khatavakar</h4>
+                    <p>RVUN25SCS083</p>
+                    <p>Section B</p>
+                </div>
+                <div class="member-card">
+                    <h4>Sanjay M</h4>
+                    <p>RVUN25SCS122</p>
+                    <p>Section B</p>
+                </div>
+            </div>
+            <div class="content-box" style="margin-top: 40px;">
+                <h3>📚 References:</h3>
+                <ul>
+                    <li>YouTube: Diyar Hussein - Traffic system model</li>
+                    <li>Tinkercad: Circuit simulation and outputs</li>
+                    <li>Wikipedia: General information and concepts</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Slide 11: Thank You -->
+        <div class="slide" id="slide11">
+            <div class="title-content">
+                <h1 class="main-title">Thank You! 🎉</h1>
+                <p class="subtitle">Questions & Discussion</p>
+                <p class="university-info" style="margin-top: 50px;">RV UNIVERSITY</p>
+                <p class="course-info">Digital Logic and Computer Orientation</p>
+            </div>
+        </div>
+
+        <!-- Navigation -->
+        <div class="slide-counter">
+            <span id="currentSlide">1</span> / <span id="totalSlides">11</span>
+        </div>
+        <div class="navigation">
+            <button class="nav-btn" onclick="previousSlide()"><i class="fas fa-chevron-left"></i></button>
+            <button class="nav-btn" onclick="nextSlide()"><i class="fas fa-chevron-right"></i></button>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 1;
+        const totalSlides = 11;
+        let trafficInterval;
+
+        function showSlide(n) {
+            const slides = document.querySelectorAll('.slide');
+
+            if (n > totalSlides) {
+                currentSlide = 1;
+            }
+            if (n < 1) {
+                currentSlide = totalSlides;
+            }
+
+            slides.forEach(slide => {
+                slide.classList.remove('active');
+            });
+
+            slides[currentSlide - 1].classList.add('active');
+            document.getElementById('currentSlide').textContent = currentSlide;
+
+            // Start traffic light animation on slide 7
+            if (currentSlide === 7) {
+                startTrafficLight();
+            } else {
+                stopTrafficLight();
+            }
+        }
+
+        function nextSlide() {
+            currentSlide++;
+            showSlide(currentSlide);
+        }
+
+        function previousSlide() {
+            currentSlide--;
+            showSlide(currentSlide);
+        }
+
+        function startTrafficLight() {
+            let state = 0;
+            const redLight = document.getElementById('redLight');
+            const yellowLight = document.getElementById('yellowLight');
+            const greenLight = document.getElementById('greenLight');
+
+            function updateLights() {
+                redLight.classList.add('off');
+                yellowLight.classList.add('off');
+                greenLight.classList.add('off');
+
+                redLight.classList.remove('red');
+                yellowLight.classList.remove('yellow');
+                greenLight.classList.remove('green');
+
+                if (state === 0) {
+                    greenLight.classList.remove('off');
+                    greenLight.classList.add('green');
+                } else if (state === 1) {
+                    yellowLight.classList.remove('off');
+                    yellowLight.classList.add('yellow');
+                } else if (state === 2) {
+                    redLight.classList.remove('off');
+                    redLight.classList.add('red');
+                }
+
+                state = (state + 1) % 3;
+            }
+
+            updateLights();
+            trafficInterval = setInterval(updateLights, 2000);
+        }
+
+        function stopTrafficLight() {
+            if (trafficInterval) {
+                clearInterval(trafficInterval);
+            }
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                nextSlide();
+            } else if (e.key === 'ArrowLeft') {
+                previousSlide();
+            }
+        });
+
+        // Touch navigation for mobile
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        document.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+
+        document.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            if (touchStartX - touchEndX > 50) {
+                nextSlide();
+            } else if (touchEndX - touchStartX > 50) {
+                previousSlide();
+            }
+        });
+
+        // Initialize
+        document.getElementById('totalSlides').textContent = totalSlides;
+        showSlide(currentSlide);
+    </script>
+</body>
+
+</html>
